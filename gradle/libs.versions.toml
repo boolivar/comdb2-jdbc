@@ -1,0 +1,10 @@
+[versions]
+protobuf-plugin = "0.9.5"
+protobuf = "3.25.8"
+
+[plugins]
+protobuf = { id = "com.google.protobuf", version.ref = "protobuf-plugin" }
+
+[libraries]
+protoc = { module = "com.google.protobuf:protoc", version.ref = "protobuf" }
+protobuf = { module = "com.google.protobuf:protobuf-java", version.ref = "protobuf" }
