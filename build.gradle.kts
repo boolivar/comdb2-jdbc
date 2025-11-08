@@ -1,7 +1,10 @@
 plugins {
     java
     alias(libs.plugins.protobuf)
+    alias(libs.plugins.shadow)
 }
+
+group = "io.github.boolivar.comdb2"
 
 val src by extra("comdb2/cdb2jdbc/src")
 val protobufSrc by extra("comdb2/protobuf")
@@ -13,6 +16,11 @@ repositories {
 tasks {
     compileJava {
         options.release = 8
+    }
+    shadowJar {
+        enableAutoRelocation = true
+        relocationPrefix = "com.bloomberg.comdb2.shadow"
+        archiveClassifier = "standalone"
     }
 }
 
