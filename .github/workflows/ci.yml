@@ -21,3 +21,10 @@ jobs:
 
     - name: Gradle build
       run: ./gradlew build
+
+    - name: Release please
+      id: release
+      if: ${{ github.ref_name == 'master' || startsWith(github.ref_name, 'release/') }}
+      uses: googleapis/release-please-action@v4
+      with:
+        target-branch: ${{ github.ref_name }}
