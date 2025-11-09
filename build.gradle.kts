@@ -2,12 +2,21 @@ plugins {
     java
     alias(libs.plugins.protobuf)
     alias(libs.plugins.shadow)
+    alias(libs.plugins.versioning)
 }
 
 group = "io.github.boolivar.comdb2"
 
 val src by extra("comdb2/cdb2jdbc/src")
 val protobufSrc by extra("comdb2/protobuf")
+
+scmVersion {
+    tag.prefix = ""
+    useHighestVersion = true
+    versionIncrementer("incrementMinorIfNotOnRelease", mapOf("releaseBranchPattern" to "release/.+"))
+    branchVersionCreator.putAll(mapOf("release/.*" to "simple"))
+    rootProject.version = version
+}
 
 repositories {
     mavenCentral()
