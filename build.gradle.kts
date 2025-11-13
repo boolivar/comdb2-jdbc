@@ -31,6 +31,29 @@ tasks {
         relocationPrefix = "com.bloomberg.comdb2.shadow"
         archiveClassifier = "standalone"
     }
+    withType<Jar>() {
+        into("META-INF") {
+            from("LICENSE")
+            from("comdb2/LICENSE") {
+                into("licenses/comdb2")
+            }
+            from("comdb2/berkdb/LICENSE") {
+                into("licenses/berkdb")
+            }
+            from("comdb2/crc32c/sb8.h") {
+                into("licenses/crc32c")
+            }
+            from("comdb2/dfp/decNumber/ICU-license.html") {
+                into("licenses/decNumber")
+            }
+            from("comdb2/dfp/dfpal/ICU-license.html") {
+                into("licenses/dfpal")
+            }
+            from("comdb2/lua/lua.h") {
+                into("licenses/lua")
+            }
+        }
+    }
 }
 
 protobuf {
