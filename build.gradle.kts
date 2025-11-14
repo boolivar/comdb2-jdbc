@@ -18,6 +18,11 @@ scmVersion {
     rootProject.version = version
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 repositories {
     mavenCentral()
 }
@@ -25,6 +30,12 @@ repositories {
 tasks {
     compileJava {
         options.release = 8
+    }
+    javadoc {
+        options {
+            this as StandardJavadocDocletOptions
+            addBooleanOption("Xdoclint:none", true) 
+        }
     }
     shadowJar {
         enableAutoRelocation = true
