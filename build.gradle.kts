@@ -14,7 +14,7 @@ scmVersion {
     tag.prefix = ""
     useHighestVersion = true
     versionIncrementer("incrementMinorIfNotOnRelease", mapOf("releaseBranchPattern" to "release/.+"))
-    branchVersionCreator.putAll(mapOf("release/.*" to "simple"))
+    branchVersionCreator.put("release/.*","simple")
     rootProject.version = version
 }
 
