@@ -1,5 +1,6 @@
 plugins {
     java
+    `maven-publish`
     alias(libs.plugins.protobuf)
     alias(libs.plugins.shadow)
     alias(libs.plugins.versioning)
@@ -95,4 +96,12 @@ sourceSets {
 
 dependencies {
     implementation(libs.protobuf)
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+        }
+    }
 }
