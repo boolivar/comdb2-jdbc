@@ -21,6 +21,10 @@ scmVersion {
     rootProject.version = version
 }
 
+sonatypePublish {
+    autoPublish = properties["mavenCentralAutoPublish"]?.toString().toBoolean()
+}
+
 repositories {
     mavenCentral()
 }
