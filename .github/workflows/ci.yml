@@ -28,3 +28,13 @@ jobs:
       uses: googleapis/release-please-action@v4
       with:
         target-branch: ${{ github.ref_name }}
+
+    - name: Publish
+      if: ${{ steps.release.outputs.release_created }}
+      env:
+        RELEASE_VERSION: ${{ steps.release.outputs.tag_name }}
+        ORG_GRADLE_PROJECT_sonatypeSigningKey: ${{ secrets.GPG_KEY }}
+        ORG_GRADLE_PROJECT_sonatypeSigningSecret: ${{ secrets.GPG_SECRET }}
+        ORG_GRADLE_PROJECT_sonatypeMavenCentralUser: ${{ secrets.SONATYPE_USER }}
+        ORG_GRADLE_PROJECT_sonatypeMavenCentralPassword: ${{ secrets.SONATYPE_PASSWORD }}
+      run: ./gradlew -Prelease.forceVersion=$RELEASE_VERSION createRelease && ./gradlew publishToSonatype
