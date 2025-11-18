@@ -3,11 +3,13 @@ axion-plugin = "1.21.0"
 protobuf-plugin = "0.9.5"
 shadow-plugin = "9.2.2"
 protobuf = "3.25.8"
+publish-plugin = "0.1.0"
 
 [plugins]
 protobuf = { id = "com.google.protobuf", version.ref = "protobuf-plugin" }
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow-plugin" }
 versioning = { id = "pl.allegro.tech.build.axion-release", version.ref = "axion-plugin" }
+publish = { id = "io.github.boolivar.sonatype-portal-publish", version.ref = "publish-plugin" }
 
 [libraries]
 protoc = { module = "com.google.protobuf:protoc", version.ref = "protobuf" }

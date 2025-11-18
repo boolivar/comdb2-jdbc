@@ -4,9 +4,11 @@ plugins {
     alias(libs.plugins.protobuf)
     alias(libs.plugins.shadow)
     alias(libs.plugins.versioning)
+    alias(libs.plugins.publish)
 }
 
 group = "io.github.boolivar.comdb2"
+description = "comdb2 jdbc driver"
 
 val src by extra("comdb2/cdb2jdbc/src")
 val protobufSrc by extra("comdb2/protobuf")
@@ -17,11 +19,6 @@ scmVersion {
     versionIncrementer("incrementMinorIfNotOnRelease", mapOf("releaseBranchPattern" to "release/.+"))
     branchVersionCreator.put("release/.*","simple")
     rootProject.version = version
-}
-
-java {
-    withJavadocJar()
-    withSourcesJar()
 }
 
 repositories {
@@ -102,6 +99,37 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             from(components["java"])
+            pom {
+                name = "$groupId:$artifactId"
+                description = project.description
+                url = "https://github.com/boolivar/comdb2-jdbc"
+                inceptionYear = "2025"
+                licenses {
+                    license {
+                        name = "MIT"
+                        url = "https://raw.githubusercontent.com/boolivar/comdb2-jdbc/$version/LICENSE"
+                        comments = "This distribution licensed under MIT License"
+                    }
+                    license {
+                        name = "Apache-2.0"
+                        url = "https://raw.githubusercontent.com/bloomberg/comdb2/main/LICENSE"
+                        comments = "Original sources licensed under the Apache License, Version 2.0"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "boolivar"
+                        name = "Aleksey Krichevskiy"
+                        email = "boolivar@gmail.com"
+                        organizationUrl = "https://github.com/boolivar"
+                    }
+                }
+                scm {
+                    connection = "scm:git:https://github.com/boolivar/comdb2-jdbc.git"
+                    developerConnection = "scm:git:ssh://github.com:boolivar/comdb2-jdbc.git"
+                    url = "https://github.com/boolivar/comdb2-jdbc"
+                }
+            }
         }
     }
 }
