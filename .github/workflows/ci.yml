@@ -25,9 +25,14 @@ jobs:
     - name: Gradle build
       run: ./gradlew build
 
+    - name: Release branch?
+      id: release-branch
+      run: |
+        echo $GITHUB_REF_NAME | grep -Pq '^\d+\.\d+$' && echo 'matches=true' || echo 'matches=false' >> $GITHUB_OUTPUT
+
     - name: Release please
       id: release
-      if: ${{ github.ref_name == 'master' || startsWith(github.ref_name, 'release/') }}
+      if: ${{ github.ref_name == 'master' || steps.release-branch.outputs.matches == 'true' }}
       uses: googleapis/release-please-action@v4
       with:
         target-branch: ${{ github.ref_name }}
