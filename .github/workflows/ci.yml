@@ -40,6 +40,7 @@ jobs:
     - name: Publish
       if: ${{ steps.release.outputs.release_created }}
       env:
+        GH_TOKEN: ${{ github.token }}
         RELEASE_VERSION: ${{ steps.release.outputs.tag_name }}
         ORG_GRADLE_PROJECT_sonatypeSigningKey: ${{ secrets.GPG_KEY }}
         ORG_GRADLE_PROJECT_sonatypeSigningSecret: ${{ secrets.GPG_SECRET }}
