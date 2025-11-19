@@ -5,7 +5,7 @@ permissions:
   pull-requests: write
 jobs:
   build:
-    if: ${{ ! (startsWith(github.event.head_commit.message, 'chore') || startsWith(github.event.head_commit.message, 'docs')) }}
+    if: ${{ ! (startsWith(github.event.head_commit.message, 'chore:') || startsWith(github.event.head_commit.message, 'docs')) }}
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
