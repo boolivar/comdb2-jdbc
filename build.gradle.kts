@@ -12,6 +12,7 @@ description = "comdb2 jdbc driver"
 
 val src by extra("comdb2/cdb2jdbc/src")
 val protobufSrc by extra("comdb2/protobuf")
+val comdb2Version = file(".gitmodules").readLines().find { it.contains("branch") }!!.split('=')[1].trim()
 
 scmVersion {
     tag.prefix = ""
@@ -43,27 +44,18 @@ tasks {
         enableAutoRelocation = true
         relocationPrefix = "com.bloomberg.comdb2.shadow"
         archiveClassifier = "standalone"
+        into("META-INF") {
+            from(resources.text.fromUri("https://raw.githubusercontent.com/protocolbuffers/protobuf/v${libs.protobuf.get().version}/LICENSE")) {
+                rename { "LICENSE" }
+                into("licenses/protobuf")
+            }
+        }
     }
     withType<Jar>() {
         into("META-INF") {
             from("LICENSE")
             from("comdb2/LICENSE") {
                 into("licenses/comdb2")
-            }
-            from("comdb2/berkdb/LICENSE") {
-                into("licenses/berkdb")
-            }
-            from("comdb2/crc32c/sb8.h") {
-                into("licenses/crc32c")
-            }
-            from("comdb2/dfp/decNumber/ICU-license.html") {
-                into("licenses/decNumber")
-            }
-            from("comdb2/dfp/dfpal/ICU-license.html") {
-                into("licenses/dfpal")
-            }
-            from("comdb2/lua/lua.h") {
-                into("licenses/lua")
             }
         }
     }
@@ -116,8 +108,13 @@ publishing {
                     }
                     license {
                         name = "Apache-2.0"
-                        url = "https://raw.githubusercontent.com/bloomberg/comdb2/main/LICENSE"
+                        url = "https://raw.githubusercontent.com/bloomberg/comdb2/$comdb2Version/LICENSE"
                         comments = "Original sources licensed under the Apache License, Version 2.0"
+                    }
+                    license {
+                        name = "BSD-3-Clause"
+                        url = "https://raw.githubusercontent.com/protocolbuffers/protobuf/v${libs.protobuf.get().version}/LICENSE"
+                        comments = "Standalone distribution includes protobuf-java binaries licensed under 3-Clause BSD License"
                     }
                 }
                 developers {
