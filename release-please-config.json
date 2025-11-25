@@ -4,6 +4,9 @@
     "include-v-in-tag": false,
     "packages": {
         ".": {
+            "extra-files": [
+                "README.md"
+            ]
         }
     }
 }
