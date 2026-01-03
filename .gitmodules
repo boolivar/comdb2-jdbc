@@ -1,4 +1,4 @@
 [submodule "comdb2"]
 	path = comdb2
 	url = https://github.com/bloomberg/comdb2
-	branch = 8.0
+	branch = 8.1
