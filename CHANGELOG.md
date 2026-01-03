@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/boolivar/comdb2-jdbc/compare/8.0.0...8.1.0) (2026-01-03)
+
+
+### Features
+
+* comdb2 v8.1 ([f9c4db2](https://github.com/boolivar/comdb2-jdbc/commit/f9c4db23507026eceb3938133ab1e09f6538305c))
+
 ## 8.0.0 (2025-11-23)
 
 
