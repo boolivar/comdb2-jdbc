@@ -12,13 +12,13 @@ maven:
 <dependency>
     <groupId>io.github.boolivar.comdb2</groupId>
     <artifactId>comdb2-jdbc</artifactId>
-    <version>8.0.0</version>
+    <version>8.1.0</version>
 </dependency>
 ```
 
 gradle:
 ```gradle
-implementation("io.github.boolivar.comdb2:comdb2-jdbc:8.0.0")
+implementation("io.github.boolivar.comdb2:comdb2-jdbc:8.1.0")
 ```
 <!-- x-release-please-end -->
 ## Standalone distribution
